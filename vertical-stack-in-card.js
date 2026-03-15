@@ -234,7 +234,7 @@ customElements.define('vertical-stack-in-card', VerticalStackInCard);
 window.customCards = window.customCards || [];
 window.customCards.push({
   type: 'vertical-stack-in-card',
-  name: 'Vertical Stack In Card',
+  name: 'Vert Stacker Card',
   description: 'Group multiple cards into a single sleek card.',
   preview: false,
   documentationURL: 'https://github.com/ofekashery/vertical-stack-in-card',
