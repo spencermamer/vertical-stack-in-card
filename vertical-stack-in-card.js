@@ -198,7 +198,7 @@ class VerticalStackInCard extends HTMLElement {
       ev.stopPropagation();
       const newConfig = {
         ...ev.detail.config,
-        type: 'custom:vertical-stack-in-card',
+        type: 'custom:vert-stacker-card',
       };
       if (vsicConfig.horizontal !== undefined) {
         newConfig.horizontal = vsicConfig.horizontal;
@@ -230,10 +230,10 @@ class VerticalStackInCard extends HTMLElement {
   }
 }
 
-customElements.define('vertical-stack-in-card', VerticalStackInCard);
+customElements.define('vert-stacker-card', VerticalStackInCard);
 window.customCards = window.customCards || [];
 window.customCards.push({
-  type: 'vertical-stack-in-card',
+  type: 'vert-stacker-card',
   name: 'Vert Stacker Card',
   description: 'Group multiple cards into a single sleek card.',
   preview: false,
