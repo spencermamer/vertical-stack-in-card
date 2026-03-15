@@ -1,5 +1,5 @@
 console.log(
-  `%cvertical-stack-in-card\n%cVersion: ${'1.0.1'}`,
+  `%cvert-stacker-card\n%cVersion: ${'1.0.1'}`,
   'color: #1976d2; font-weight: bold;',
   ''
 );
@@ -237,5 +237,5 @@ window.customCards.push({
   name: 'Vert Stacker Card',
   description: 'Group multiple cards into a single sleek card.',
   preview: false,
-  documentationURL: 'https://github.com/ofekashery/vertical-stack-in-card',
+  documentationURL: 'https://github.com/spencermamer/vertical-stack-in-card',
 });
