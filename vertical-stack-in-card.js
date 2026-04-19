@@ -1,5 +1,5 @@
 console.log(
-  `%cvertical-stack-in-card\n%cVersion: ${'1.0.1'}`,
+  `%cvert-stacker-card\n%cVersion: ${'1.0.1'}`,
   'color: #1976d2; font-weight: bold;',
   ''
 );
@@ -173,14 +173,52 @@ class VerticalStackInCard extends HTMLElement {
     }
     const configElement = await cls.getConfigElement();
 
-    // Patch setConfig to remove non-VSIC config options.
+    // Keep track of VSIC-specific options not handled by the base editor.
+    let vsicConfig = {};
+
+    // Patch setConfig: pass the native stack type so the inner editor's
+    // "Add card" button and card-picker work correctly, while storing any
+    // VSIC-specific options so they can be restored on config-changed.
     const originalSetConfig = configElement.setConfig;
-    configElement.setConfig = (config) =>
-      originalSetConfig.call(configElement, {
-        type: config.type,
+    configElement.setConfig = (config) => {
+      vsicConfig = { ...vsicConfig, horizontal: config.horizontal, styles: config.styles };
+      return originalSetConfig.call(configElement, {
+        type: 'vertical-stack',
         title: config.title,
         cards: config.cards || [],
       });
+    };
+
+    // Intercept config-changed events fired by the inner editor so that the
+    // correct custom type and any VSIC-specific options are always present.
+    // A flag prevents the listener from recursively processing its own event.
+    let isDispatching = false;
+    configElement.addEventListener('config-changed', (ev) => {
+      if (isDispatching) return;
+      ev.stopPropagation();
+      const newConfig = {
+        ...ev.detail.config,
+        type: 'custom:vert-stacker-card',
+      };
+      if (vsicConfig.horizontal !== undefined) {
+        newConfig.horizontal = vsicConfig.horizontal;
+      }
+      if (vsicConfig.styles !== undefined) {
+        newConfig.styles = vsicConfig.styles;
+      }
+      try {
+        isDispatching = true;
+        configElement.dispatchEvent(
+          new CustomEvent('config-changed', {
+            detail: { config: newConfig },
+            bubbles: true,
+            composed: true,
+          })
+        );
+      } finally {
+        isDispatching = false;
+      }
+    });
 
     return configElement;
   }
@@ -192,12 +230,12 @@ class VerticalStackInCard extends HTMLElement {
   }
 }
 
-customElements.define('vertical-stack-in-card', VerticalStackInCard);
+customElements.define('vert-stacker-card', VerticalStackInCard);
 window.customCards = window.customCards || [];
 window.customCards.push({
-  type: 'vertical-stack-in-card',
-  name: 'Vertical Stack In Card',
+  type: 'vert-stacker-card',
+  name: 'Vert Stacker Card',
   description: 'Group multiple cards into a single sleek card.',
   preview: false,
-  documentationURL: 'https://github.com/ofekashery/vertical-stack-in-card',
+  documentationURL: 'https://github.com/spencermamer/vertical-stack-in-card',
 });

@@ -1,11 +1,11 @@
-# Vertical Stack In Card
+# Vert Stacker Card
 
-![Version](https://img.shields.io/github/v/release/ofekashery/vertical-stack-in-card)
-![Downloads](https://img.shields.io/github/downloads/ofekashery/vertical-stack-in-card/total)
-![Stars](https://img.shields.io/github/stars/ofekashery/vertical-stack-in-card)
-![HACS](https://img.shields.io/badge/HACS-Default-41BDF5.svg)
+![Version](https://img.shields.io/github/v/release/spencermamer/vertical-stack-in-card)
+![Downloads](https://img.shields.io/github/downloads/spencermamer/vertical-stack-in-card/total)
+![Stars](https://img.shields.io/github/stars/spencermamer/vertical-stack-in-card)
+![HACS](https://img.shields.io/badge/HACS-Custom-41BDF5.svg)
 
-**Vertical Stack In Card** is a custom Lovelace card for Home Assistant, allowing you to group multiple cards into a single sleek card. It offers a clean, organized way to display multiple cards in your Home Assistant dashboard.
+**Vert Stacker Card** is a custom Lovelace card for Home Assistant, allowing you to group multiple cards into a single sleek card. It offers a clean, organized way to display multiple cards in your Home Assistant dashboard.
 
 ![Showcase Card](https://user-images.githubusercontent.com/16443111/220773923-c28009d6-edfc-4ffd-9290-3e0c6e1acf73.png)
 
@@ -13,7 +13,7 @@
 
 | Name         | Type    | Default | Description                                       |
 | ------------ | ------- | ------- | ------------------------------------------------- |
-| `type`       | string  | N/A     | Must be `custom:vertical-stack-in-card`.          |
+| `type`       | string  | N/A     | Must be `custom:vert-stacker-card`.               |
 | `cards`      | list    | N/A     | List of cards to include.                         |
 | `title`      | string  | None    | Optional. Title displayed at the top of the card. |
 | `horizontal` | boolean | false   | Optional. Whatever stack cards horizontally.      |
@@ -24,15 +24,15 @@
 ### Via HACS (Home Assistant Community Store)
 
 1. Open HACS in Home Assistant.
-2. Search for "Vertical Stack In Card."
+2. Search for "Vert Stacker Card."
 3. Install and follow the setup instructions.
 
 ### Manual Installation
 
-Download the [`vertical-stack-in-card.js`](https://raw.githubusercontent.com/ofekashery/vertical-stack-in-card/master/vertical-stack-in-card.js) into your `<config directory>/www` directory.
+Download the [`vertical-stack-in-card.js`](https://raw.githubusercontent.com/spencermamer/vertical-stack-in-card/master/vertical-stack-in-card.js) into your `<config directory>/www` directory.
 
 ```bash
-wget https://raw.githubusercontent.com/ofekashery/vertical-stack-in-card/master/vertical-stack-in-card.js
+wget https://raw.githubusercontent.com/spencermamer/vertical-stack-in-card/master/vertical-stack-in-card.js
 mv vertical-stack-in-card.js /config/www/
 ```
 
@@ -64,7 +64,7 @@ Alternatively, if you prefer the graphical editor, use the menu to add the resou
 Add the card to your Lovelace UI configuration:
 
 ```yaml
-type: 'custom:vertical-stack-in-card'
+type: 'custom:vert-stacker-card'
 title: My Card
 cards:
   - type: glance
